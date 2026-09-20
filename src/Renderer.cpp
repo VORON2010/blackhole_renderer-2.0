@@ -274,10 +274,10 @@ void Renderer::CheckAndRecordVideo(SimulationState& state, float dt) {
         recordAccum += dt;
         if (recordAccum > 1.0f / 30.0f) {
             recordAccum -= 1.0f / 30.0f;
-            if (!ffmpegPipe) {
-                recordWidth = state.windowWidth;
-                recordHeight = state.windowHeight;
-                std::filesystem::create_directories("video");
+                if (!ffmpegPipe) {
+                    recordWidth = state.windowWidth & ~1;
+                    recordHeight = state.windowHeight & ~1;
+                    std::filesystem::create_directories("video");
                 int vidIdx = 1;
                 char outFilename[256];
                 while (true) {

@@ -138,13 +138,6 @@ void UIManager::Render(SimulationState& state, float fps, float ramMB, float scr
         ImGui::End();
     }
     
-    if (state.recording) {
-        ImGui::SetNextWindowPos(ImVec2(20, 20));
-        ImGui::Begin("REC", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground);
-        ImGui::Checkbox(u8"Запись", &state.recording);
-        ImGui::End();
-    }
-
     if (screenshotTimer > 0.0f) {
         ImGui::SetNextWindowPos(ImVec2(10, 10));
         ImGui::Begin("Notif", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoNav);
