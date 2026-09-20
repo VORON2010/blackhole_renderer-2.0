@@ -25,7 +25,6 @@ Makefile
 
 # Generated media
 video/
-media/
 screenshoots/
 screenshots/
 imgui.ini
