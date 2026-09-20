@@ -1,10 +1,6 @@
 
 #define iHistoryTex iChannel3
 #define textureQueryLod(s, d) vec2(0.0)
-
-
-
-
 #define iFovRadians  (60.0 * 0.01745329) 
 #define iDEBUG                  0      
 #define iPrepass                0      
@@ -33,7 +29,7 @@
 #endif
 
 #define iBackShiftMax           2.0       
-#define iInterRadiusRs          (2.0 * iBhSize)
+#define iInterRadiusRs          (2.0 * iBhSize) 
 #ifndef iOuterRadiusRs
 #define iOuterRadiusRs          20.0      
 #endif
