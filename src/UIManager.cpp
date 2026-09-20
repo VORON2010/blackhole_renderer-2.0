@@ -122,6 +122,10 @@ void UIManager::Render(SimulationState& state, float fps, float ramMB, float scr
             ImGui::Checkbox(u8"Фон (Звезды)", &state.showBackground);
             ImGui::Checkbox(u8"Оффлайн рендер видео (100% ГПУ)", &state.offlineRender);
             ImGui::Checkbox(u8"Захватывать интерфейс (ImGui)", &state.captureImGui);
+            bool bgStopped = (state.stopBackground > 0.5f);
+            if (ImGui::Checkbox(u8"Остановка заднего фона", &bgStopped)) {
+                state.stopBackground = bgStopped ? 1.0f : 0.0f;
+            }
             ImGui::SliderFloat(u8"Качество (Лучи)", &state.quality, 0.1f, 5.0f);
             ImGui::SliderFloat(u8"Хроматическая аберрация", &state.chromAb, 0.0f, 0.05f);
             ImGui::Checkbox(u8"Тепловизор", &state.thermalMode);
