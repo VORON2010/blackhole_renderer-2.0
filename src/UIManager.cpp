@@ -120,8 +120,9 @@ void UIManager::Render(SimulationState& state, float fps, float ramMB, float scr
         if (ImGui::CollapsingHeader(u8"Эффекты и Графика", ImGuiTreeNodeFlags_DefaultOpen)) {
             ImGui::SliderFloat(u8"Масштаб рендера", &state.renderScale, 0.1f, 1.0f);
             ImGui::Checkbox(u8"Фон (Звезды)", &state.showBackground);
-            ImGui::Checkbox(u8"Оффлайн рендер видео (100% кач-во)", &state.offlineRender);
-            ImGui::SliderFloat(u8"Качество (Шаги)", &state.quality, 0.1f, 5.0f);
+            ImGui::Checkbox(u8"Оффлайн рендер видео (100% ГПУ)", &state.offlineRender);
+            ImGui::Checkbox(u8"Захватывать интерфейс (ImGui)", &state.captureImGui);
+            ImGui::SliderFloat(u8"Качество (Лучи)", &state.quality, 0.1f, 5.0f);
             ImGui::SliderFloat(u8"Хроматическая аберрация", &state.chromAb, 0.0f, 0.05f);
             ImGui::Checkbox(u8"Тепловизор", &state.thermalMode);
             ImGui::Checkbox(u8"Радиотелескоп", &state.telescopeMode);
@@ -140,7 +141,7 @@ void UIManager::Render(SimulationState& state, float fps, float ramMB, float scr
     if (state.recording) {
         ImGui::SetNextWindowPos(ImVec2(20, 20));
         ImGui::Begin("REC", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground);
-        if ((currentFrame / 15) % 2 == 0) ImGui::TextColored(ImVec4(1,0,0,1), "* RECORDING F5");
+        ImGui::Checkbox(u8"Запись", &state.recording);
         ImGui::End();
     }
 

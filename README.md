@@ -1,60 +1,65 @@
-# Black Hole Renderer 2.0
-
-A highly realistic, real-time black hole rendering engine written in C++ and GLSL. This project leverages Raymarching and the Kerr-Schild metric to simulate the gravitational lensing of a spinning black hole, complete with an accretion disk and relativistic jets.
-
-## Showcase
-
-*(Run `convert_to_gif.bat` after recording videos with F5 to generate these GIFs!)*
+# Реалтайм-рендер Черной Дыры 2.0 (Black Hole Renderer)
 
 <p align="center">
-  <img src="media/gif1.gif" width="45%" alt="Black Hole Demo 1" />
-  <img src="media/gif2.gif" width="45%" alt="Black Hole Demo 2" />
+  <img src="media/gif3.gif" width="80%" alt="Главное превью (Полет камеры)" />
+</p>
+
+Высокореалистичный движок рендеринга черной дыры в реальном времени, написанный на C++ и GLSL. Проект использует Raymarching и метрику Керра-Шилда для симуляции гравитационного линзирования вращающейся черной дыры, а также аккреционного диска и релятивистских джетов.
+
+## Галерея (Что еще можно записать)
+
+В программе есть кинематографическая камера и полная настройка физики. Вот еще несколько идей для кадров, которые можно записать (запустите `convert_to_gif.bat` после записи через F5!):
+
+<p align="center">
+  <img src="media/gif1.gif" width="45%" alt="Вид на аккреционный диск сбоку (как в Интерстелларе)" />
+  <img src="media/gif2.gif" width="45%" alt="Релятивистские джеты вблизи" />
 </p>
 <p align="center">
-  <img src="media/gif3.gif" width="45%" alt="Cinematic Flight" />
-  <img src="media/gif4.gif" width="45%" alt="Relativistic Jets" />
+  <img src="media/gif4.gif" width="45%" alt="Вид сверху: искажение света на полюсе" />
 </p>
 
-## Features
+*Идеи для записи: пролет сквозь джеты (с видом от первого лица), быстрое вращение диска с сильным эффектом Доплера, или включенный режим радиотелескопа.*
 
-- **Relativistic Raymarching**: Real-time integration of light paths through the curved spacetime of a Kerr black hole using Runge-Kutta integration.
-- **Accretion Disk & Jets**: Fully customizable accretion disk and relativistic jets with doppler beaming, gravitational redshift, and temperature mapping.
-- **Cinematic Keyframing**: Built-in cinematic camera system. Press `F6` to add keyframes and `F7` to play them back smoothly.
-- **Video Recording**: Press `F5` to start recording the output directly to `.mp4` (requires `ffmpeg` in your PATH).
-- **Extensive UI Controls**: Real-time adjustment of black hole mass, spin, charge, disk brightness, and more via an ImGui overlay.
+## Особенности
 
-## Requirements
+- **Релятивистский Raymarching**: Интегрирование путей света сквозь искривленное пространство-время черной дыры Керра в реальном времени с помощью интегратора Рунге-Кутты.
+- **Аккреционный Диск и Джеты**: Полностью настраиваемые структуры с учетом гравитационного красного смещения, доплеровского усиления и температурных карт.
+- **Кинематографическая камера**: Встроенная система ключевых кадров. Нажмите `F6` чтобы добавить кадр и `F7` чтобы плавно пролететь по ним.
+- **Запись видео**: Нажмите `F5` для начала прямой записи в `.mp4` (требуется `ffmpeg`).
+- **Глубокая настройка UI**: Настройка массы, вращения (спина), заряда, яркости диска и захват самого интерфейса на видео.
 
-- CMake 3.20 or higher
-- C++17 compatible compiler (MSVC, GCC, Clang)
-- OpenGL 3.3+ capable GPU
-- `ffmpeg` (optional, for video recording)
+## Требования
 
-## Build Instructions
+- CMake 3.20 или новее
+- Компилятор с поддержкой C++17 (MSVC, GCC, Clang)
+- Видеокарта с поддержкой OpenGL 3.3+
+- `ffmpeg` (опционально, для записи видео)
 
-1. Clone the repository:
+## Инструкция по сборке
+
+1. Склонируйте репозиторий:
    ```bash
    git clone <your_repo_url>
    cd megarealstic_clion
    ```
-2. Build with CMake:
+2. Соберите через CMake:
    ```bash
    mkdir cmake-build-release && cd cmake-build-release
    cmake .. -DCMAKE_BUILD_TYPE=Release
    cmake --build . --config Release
    ```
-3. Run the executable `megarealstic` (or `megarealstic.exe` on Windows).
+3. Запустите `megarealstic` (или `megarealstic.exe` на Windows).
 
-## Controls
+## Управление
 
-- **WASD / Mouse**: Move and rotate the camera
-- **Scroll Wheel**: Change movement speed
-- **F5**: Toggle video recording
-- **F6**: Add a cinematic keyframe
-- **F7**: Play cinematic camera path
-- **F12**: Take a screenshot
-- **Space**: Toggle UI
+- **WASD / Мышь**: Перемещение и вращение камеры
+- **Колесико**: Изменение скорости полета
+- **F5**: Начать / Остановить запись видео
+- **F6**: Добавить ключевой кадр для кинематографичной камеры
+- **F7**: Запустить пролет по ключевым кадрам
+- **F12**: Сделать скриншот
+- **Space (Пробел)**: Скрыть / Показать интерфейс
 
-## License
+## Лицензия
 
-This project is open-source. See the repository for details.
+Проект имеет открытый исходный код. Подробности в репозитории.

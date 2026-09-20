@@ -18,7 +18,7 @@ struct SimulationState {
     bool showSettings = true;
     bool showMap = false;
     bool showBackground = true;
-    bool showMonitor = false;
+    bool showMonitor = false; bool captureImGui = false;
     
     bool takeScreenshot = false;
     bool recording = false;

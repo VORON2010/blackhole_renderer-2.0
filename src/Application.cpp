@@ -171,9 +171,11 @@ void Application::Run() {
         renderer.CheckAndSaveScreenshot(state, screenshotTimer);
         if (screenshotTimer > 0.0f) screenshotTimer -= dt;
         
-        renderer.CheckAndRecordVideo(state, dt);
+        if (!state.captureImGui) renderer.CheckAndRecordVideo(state, dt);
 
         ui.EndFrame();
+        
+        if (state.captureImGui) renderer.CheckAndRecordVideo(state, dt);
         
         glfwSwapBuffers(window);
         frame++;
