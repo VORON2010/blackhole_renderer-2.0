@@ -1,0 +1,33 @@
+# CMake
+cmake-build-*/
+build/
+CMakeCache.txt
+CMakeFiles/
+Makefile
+*.cmake
+*.dir/
+
+# Compiled files
+*.obj
+*.exe
+*.dll
+*.lib
+*.pdb
+*.tlog
+*.log
+
+# IDEs
+.idea/
+.vs/
+*.sln
+*.vcxproj
+*.vcxproj.*
+
+# Generated media
+video/
+media/
+screenshoots/
+screenshots/
+imgui.ini
+
+
