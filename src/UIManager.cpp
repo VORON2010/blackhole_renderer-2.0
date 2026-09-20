@@ -58,8 +58,8 @@ void UIManager::Render(SimulationState& state, float fps, float ramMB, float scr
         ImGui::Begin(u8"Панель Управления", &state.showSettings, ImGuiWindowFlags_AlwaysAutoResize);
 
         if (ImGui::CollapsingHeader(u8"Физика Черной Дыры", ImGuiTreeNodeFlags_DefaultOpen)) {
-            ImGui::SliderFloat(u8"Масса ЧД (размер)", &state.bhSize, 0.1f, 5.0f);
-            ImGui::SliderFloat(u8"Размер диска", &state.outerRadiusRs, 5.0f, 50.0f);
+            ImGui::SliderFloat(u8"Масса ЧД (размер)", &state.bhSize, 0.1f, 100.0f);
+            ImGui::SliderFloat(u8"Размер диска", &state.outerRadiusRs, 5.0f, 500.0f);
             ImGui::SliderFloat(u8"Спин (Вращение a)", &state.spin, 0.0f, 0.999f);
             ImGui::SliderFloat(u8"Заряд (Q)", &state.q, 0.0f, 1.0f);
             ImGui::SliderFloat(u8"Темп аккреции", &state.accretionRate, 0.0f, 0.005f, "%.5f");
@@ -71,7 +71,7 @@ void UIManager::Render(SimulationState& state, float fps, float ramMB, float scr
             ImGui::SliderFloat(u8"Доплеровское покраснение", &state.reddening, 0.0f, 1.0f);
             ImGui::SliderFloat(u8"Насыщенность цвета", &state.saturation, 0.0f, 2.0f);
             ImGui::ColorEdit3(u8"Цвет плазмы", state.diskColor);
-            ImGui::SliderFloat(u8"Скорость вращения диска", &state.diskRotSpeed, 0.0f, 20.0f);
+            ImGui::SliderFloat(u8"Скорость вращения диска", &state.diskRotSpeed, 0.0f, 100.0f);
         }
 
         if (ImGui::CollapsingHeader(u8"Камера", ImGuiTreeNodeFlags_DefaultOpen)) {
