@@ -44,7 +44,7 @@ struct SimulationState {
     float jetLength = 1.0f;
     float jetWidth = 1.0f;
     float outerRadiusRs = 20.0f;
-    float bhSize = 1.0f;
+    char lastSavedVideo[256] = " \; float videoSavedTimer = 0.0f; float bhSize = 1.0f;
     float diskRotSpeed = 1.0f;
     float stopBackground = 0.0f;
 

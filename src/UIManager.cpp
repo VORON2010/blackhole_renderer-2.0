@@ -138,6 +138,20 @@ void UIManager::Render(SimulationState& state, float fps, float ramMB, float scr
         ImGui::End();
     }
     
+    if (state.recording) {
+        ImGui::SetNextWindowPos(ImVec2(20, 20));
+        ImGui::Begin("REC", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoNav);
+        if ((currentFrame / 15) % 2 == 0) ImGui::TextColored(ImVec4(1,0,0,1), "* RECORDING F5");
+        ImGui::End();
+    }
+
+    if (state.videoSavedTimer > 0.0f) {
+        ImGui::SetNextWindowPos(ImVec2(20, 20));
+        ImGui::Begin("VideoSaved", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoNav);
+        ImGui::TextColored(ImVec4(0,1,0,1), u8"Видео сохранено: %s", state.lastSavedVideo);
+        ImGui::End();
+    }
+
     if (screenshotTimer > 0.0f) {
         ImGui::SetNextWindowPos(ImVec2(10, 10));
         ImGui::Begin("Notif", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoNav);

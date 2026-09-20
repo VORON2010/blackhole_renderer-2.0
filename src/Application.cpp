@@ -170,6 +170,7 @@ void Application::Run() {
         
         renderer.CheckAndSaveScreenshot(state, screenshotTimer);
         if (screenshotTimer > 0.0f) screenshotTimer -= dt;
+        if (state.videoSavedTimer > 0.0f) state.videoSavedTimer -= dt;
         
         if (!state.captureImGui) renderer.CheckAndRecordVideo(state, dt);
 

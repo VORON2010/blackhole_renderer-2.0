@@ -285,6 +285,7 @@ void Renderer::CheckAndRecordVideo(SimulationState& state, float dt) {
                     if (!std::filesystem::exists(outFilename)) break;
                     vidIdx++;
                 }
+                strcpy(state.lastSavedVideo, outFilename);
                 char cmd[512];
                 sprintf(cmd, "ffmpeg -y -f rawvideo -vcodec rawvideo -s %dx%d -pix_fmt rgba -r 30 -i - -c:v libx264 -preset ultrafast -pix_fmt yuv420p \"%s\"", recordWidth, recordHeight, outFilename);
 #ifdef _WIN32
@@ -297,6 +298,9 @@ void Renderer::CheckAndRecordVideo(SimulationState& state, float dt) {
             
             std::vector<unsigned char> pixels(recordWidth * recordHeight * 4);
             glPixelStorei(GL_PACK_ALIGNMENT, 1);
+            glPixelStorei(GL_PACK_ROW_LENGTH, 0); // PREVENT ImGui stride bugs
+            glPixelStorei(GL_PACK_SKIP_PIXELS, 0);
+            glPixelStorei(GL_PACK_SKIP_ROWS, 0);
             glReadBuffer(GL_BACK);
             glReadPixels(0, 0, recordWidth, recordHeight, GL_RGBA, GL_UNSIGNED_BYTE, pixels.data());
             
@@ -320,7 +324,8 @@ void Renderer::CheckAndRecordVideo(SimulationState& state, float dt) {
                 pclose(ffmpegPipe);
 #endif
                 ffmpegPipe = nullptr;
-                std::cout << "Video saved successfully!\n";
+                state.videoSavedTimer = 3.0f;
+                std::cout << "Video saved successfully to " << state.lastSavedVideo << "!\n";
             }
         }
     }
