@@ -99,25 +99,6 @@ bool Application::Init() {
         return false;
     }
 
-    const char* renderer_str = (const char*)glGetString(GL_RENDERER);
-    std::string gpuName = renderer_str ? renderer_str : "Unknown GPU";
-    
-    if (gpuName.find("RTX") != std::string::npos || gpuName.find("RX 6") != std::string::npos || gpuName.find("RX 7") != std::string::npos || gpuName.find("GTX 1080") != std::string::npos) {
-        state.renderScale = 1.0f;
-        state.quality = 1.0f;
-#ifdef _WIN32
-        std::string msg = "System Check Passed: Your PC is powerful enough!\n\nDetected GPU: " + gpuName + "\n\nThe 'Mega Realistic Volumetric Gas' preset and maximum integration steps (4000) have been automatically enabled for cinematic quality.";
-        MessageBoxA(nullptr, msg.c_str(), "Hardware Performance Check", MB_OK | MB_ICONINFORMATION);
-#endif
-    } else {
-        state.renderScale = 0.5f;
-        state.quality = 0.5f;
-#ifdef _WIN32
-        std::string msg = "System Check: Mid/Low-end GPU detected.\n\nDetected GPU: " + gpuName + "\n\nRender scale and quality have been automatically lowered for better performance. You can adjust this in settings.";
-        MessageBoxA(nullptr, msg.c_str(), "Hardware Performance Check", MB_OK | MB_ICONWARNING);
-#endif
-    }
-
     renderer.Init();
     ui.Init(window);
     return true;
