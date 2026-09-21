@@ -4,8 +4,6 @@
 #include <imgui_impl_opengl3.h>
 #include <glad/glad.h>
 #include <math.h>
-#include <stdio.h>
-#include <string.h>
 
 void UIManager::Init(GLFWwindow* window) {
     IMGUI_CHECKVERSION();
@@ -55,63 +53,9 @@ void UIManager::NewFrame() {
     ImGui::NewFrame();
 }
 
-static void SaveScene(const SimulationState& state) {
-    FILE* f = fopen("scene.cfg", "w");
-    if (!f) return;
-    fprintf(f, "bhSize %f\n", state.bhSize);
-    fprintf(f, "outerRadiusRs %f\n", state.outerRadiusRs);
-    fprintf(f, "spin %f\n", state.spin);
-    fprintf(f, "q %f\n", state.q);
-    fprintf(f, "accretionRate %f\n", state.accretionRate);
-    fprintf(f, "brightmut %f\n", state.brightmut);
-    fprintf(f, "jetBrightmut %f\n", state.jetBrightmut);
-    fprintf(f, "jetLength %f\n", state.jetLength);
-    fprintf(f, "jetWidth %f\n", state.jetWidth);
-    fprintf(f, "darkmut %f\n", state.darkmut);
-    fprintf(f, "reddening %f\n", state.reddening);
-    fprintf(f, "saturation %f\n", state.saturation);
-    fprintf(f, "diskColor %f %f %f\n", state.diskColor[0], state.diskColor[1], state.diskColor[2]);
-    fprintf(f, "diskRotSpeed %f\n", state.diskRotSpeed);
-    fprintf(f, "stopBackground %f\n", state.stopBackground);
-    fprintf(f, "quality %f\n", state.quality);
-    fprintf(f, "chromAb %f\n", state.chromAb);
-    fclose(f);
-}
-
-static void LoadScene(SimulationState& state) {
-    FILE* f = fopen("scene.cfg", "r");
-    if (!f) return;
-    char key[64];
-    while (fscanf(f, "%63s", key) == 1) {
-        if (strcmp(key, "bhSize") == 0) fscanf(f, "%f", &state.bhSize);
-        else if (strcmp(key, "outerRadiusRs") == 0) fscanf(f, "%f", &state.outerRadiusRs);
-        else if (strcmp(key, "spin") == 0) fscanf(f, "%f", &state.spin);
-        else if (strcmp(key, "q") == 0) fscanf(f, "%f", &state.q);
-        else if (strcmp(key, "accretionRate") == 0) fscanf(f, "%f", &state.accretionRate);
-        else if (strcmp(key, "brightmut") == 0) fscanf(f, "%f", &state.brightmut);
-        else if (strcmp(key, "jetBrightmut") == 0) fscanf(f, "%f", &state.jetBrightmut);
-        else if (strcmp(key, "jetLength") == 0) fscanf(f, "%f", &state.jetLength);
-        else if (strcmp(key, "jetWidth") == 0) fscanf(f, "%f", &state.jetWidth);
-        else if (strcmp(key, "darkmut") == 0) fscanf(f, "%f", &state.darkmut);
-        else if (strcmp(key, "reddening") == 0) fscanf(f, "%f", &state.reddening);
-        else if (strcmp(key, "saturation") == 0) fscanf(f, "%f", &state.saturation);
-        else if (strcmp(key, "diskColor") == 0) fscanf(f, "%f %f %f", &state.diskColor[0], &state.diskColor[1], &state.diskColor[2]);
-        else if (strcmp(key, "diskRotSpeed") == 0) fscanf(f, "%f", &state.diskRotSpeed);
-        else if (strcmp(key, "stopBackground") == 0) fscanf(f, "%f", &state.stopBackground);
-        else if (strcmp(key, "quality") == 0) fscanf(f, "%f", &state.quality);
-        else if (strcmp(key, "chromAb") == 0) fscanf(f, "%f", &state.chromAb);
-    }
-    fclose(f);
-}
-
 void UIManager::Render(SimulationState& state, float fps, float ramMB, float screenshotTimer, int currentFrame, unsigned int fboB_id, int renderW) {
     if (state.showSettings) {
         ImGui::Begin(u8"Панель Управления", &state.showSettings, ImGuiWindowFlags_AlwaysAutoResize);
-
-        if (ImGui::Button(u8"Сохранить сцену")) SaveScene(state);
-        ImGui::SameLine();
-        if (ImGui::Button(u8"Загрузить сцену")) LoadScene(state);
-        ImGui::Separator();
 
         if (ImGui::CollapsingHeader(u8"Физика Черной Дыры", ImGuiTreeNodeFlags_DefaultOpen)) {
             ImGui::SliderFloat(u8"Масса ЧД (размер)", &state.bhSize, 0.1f, 5.0f);
